@@ -6,3 +6,6 @@
 //
 
 import Foundation
+
+let myHeight: CGFloat = 300
+let myWidth: CGFloat = 300

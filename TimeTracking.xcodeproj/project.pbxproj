@@ -11,6 +11,7 @@
 		DA51507C2AF42A82001B65D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51507B2AF42A82001B65D4 /* ContentView.swift */; };
 		DA51507E2AF42A82001B65D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA51507D2AF42A82001B65D4 /* Assets.xcassets */; };
 		DA5150812AF42A82001B65D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA5150802AF42A82001B65D4 /* Preview Assets.xcassets */; };
+		DA5647652AF4319E0039649A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5647642AF4319E0039649A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		DA51507D2AF42A82001B65D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA5150802AF42A82001B65D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA5150822AF42A82001B65D4 /* TimeTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeTracking.entitlements; sourceTree = "<group>"; };
+		DA5647642AF4319E0039649A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		DA5150782AF42A82001B65D4 /* TimeTracking */ = {
 			isa = PBXGroup;
 			children = (
+				DA5647642AF4319E0039649A /* Constants.swift */,
 				DA5150792AF42A82001B65D4 /* TimeTrackingApp.swift */,
 				DA51507B2AF42A82001B65D4 /* ContentView.swift */,
 				DA51507D2AF42A82001B65D4 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			files = (
 				DA51507C2AF42A82001B65D4 /* ContentView.swift in Sources */,
 				DA51507A2AF42A82001B65D4 /* TimeTrackingApp.swift in Sources */,
+				DA5647652AF4319E0039649A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +283,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -306,6 +311,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
