@@ -7,96 +7,57 @@
 
 import SwiftUI
 
-extension TimeInterval {
-    var hourMinuteSecond: String {
-        String(format:"%d:%02d:%02d", hour, minute, second)
-    }
-    var minuteSecondMS: String {
-        String(format:"%d:%02d.%03d", minute, second, millisecond)
-    }
-    var hour: Int {
-        Int((self/3600).truncatingRemainder(dividingBy: 3600))
-    }
-    var minute: Int {
-        Int((self/60).truncatingRemainder(dividingBy: 60))
-    }
-    var second: Int {
-        Int(truncatingRemainder(dividingBy: 60))
-    }
-    var millisecond: Int {
-        Int((self*1000).truncatingRemainder(dividingBy: 1000))
-    }
-}
-
-
-struct UserFocus: Identifiable {
-    let name: String
-    let id = UUID()
-    let timeElapsed: TimeInterval = 0
-}
-
-
-private var userFocuses = [
-    UserFocus(name: "Read"),
-    UserFocus(name: "Work"),
-    UserFocus(name: "Study"),
-    UserFocus(name: "Cook"),
-    UserFocus(name: "Entertainment"),
-    UserFocus(name: "Inactive"),
-]
-
-
-struct ListItemView: View {
-    @State private var select = false
-    var activity = false
-    let focus: UserFocus
-    var body: some View {
-        HStack {
-            Toggle(focus.name, isOn: $select)
-                .toggleStyle(.checklist)
-            Spacer()
-            Text(focus.timeElapsed.hourMinuteSecond)
-        }
-        .padding(.vertical, 4)
-    }
-}
-
-extension ToggleStyle where Self == CheckboxToggleStyle {
-    static var checklist: CheckboxToggleStyle { .init() }
-}
-
-struct CheckboxToggleStyle: ToggleStyle {
-   func makeBody(configuration: Configuration) -> some View {
-       HStack {
-           Circle()
-               .stroke(lineWidth: 2)
-               .frame(width: 18, height: 18)
-               .overlay {
-                   Image(systemName: configuration.isOn ?"checkmark" : "")
-               }
-               .onTapGesture {
-                   withAnimation(.spring()) {
-                       configuration.isOn.toggle()
-                   }
-               }
-           configuration.label
-           
-       }
-   }
-}
+let myHeight: CGFloat = 300
+let myWidth: CGFloat = 300
 
 
 struct ContentView: View {
-    @State private var selection: Int = -1
+    @ObservedObject public var viewModel = ViewModel()
+    
     var body: some View {
         VStack {
-            List(userFocuses) { focus in
-                ListItemView(focus: focus)
+            List {
+                // TODO: Fix directly accessing model data, access data / publish change via VM
+                ForEach(1..<viewModel.model.focusList.count) { index in
+                    HStack {
+                        HStack() {
+                            SelectButtonView(selected: viewModel.model.focusList[index].onFocus)
+                            Image(systemName: ViewModel.focusInitDatas[index-1].iconName)
+                                .frame(width: 25, height: 18)
+                            Text(viewModel.model.focusList[index].name)
+                        }
+                        .frame(width: myWidth * 2 / 3, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewModel.chooseFocus(name: viewModel.model.focusList[index].name)
+                        }
+                        Text(String(viewModel.model.focusList[index].totalTimeUntilLastCompletedSession.hourMinuteSecond))
+                            .frame(alignment: .trailing)
+                    }
+                }
+                .padding(5)
             }
         }
         .frame(width: myWidth, height: myHeight)
     }
 }
+
+struct SelectButtonView: View {
+    var selected: Bool
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(.blue, lineWidth: 2)
+                .frame(width:18, height:18)
+            if (selected) {
+                Circle()
+                    .fill(Color.blue)
+                    .frame(width:14, height:14)
+            }
+        }
+    }
+}
+
 
 #Preview {
     ContentView()

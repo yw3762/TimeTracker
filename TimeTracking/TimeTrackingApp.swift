@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct time_trackerApp: App {
-    
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     
     var body: some Scene {
@@ -28,8 +27,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         if let window = NSApplication.shared.windows.first {
             window.close()
         }
-        //NSApplication.shared.activate(ignoringOtherApps: true)
-
         
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
@@ -58,27 +55,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 self.popover.contentViewController?.view.window?.makeKey()
             }
         }
-        // setupMenus()
-    }
-    
-    
-    // 1
-    private func changeStatusBarButton(number: Int) {
-        if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "\(number).circle", accessibilityDescription: number.description)
-        }
-    }
-
-    @objc func didTapOne() {
-        changeStatusBarButton(number: 1)
-    }
-
-    @objc func didTapTwo() {
-        changeStatusBarButton(number: 2)
-    }
-
-    @objc func didTapThree() {
-        changeStatusBarButton(number: 3)
     }
 
 }
